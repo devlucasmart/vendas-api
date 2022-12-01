@@ -2,9 +2,11 @@
 
 # Premissas:
 
-Criar uma API usando Spring Boot, que faz parte da nossa stack.
-Utilizar um banco de dados em memória (HSQLDB ou H2)
-Não é necessário desenvolver front-end, apenas o back-end.
+Criar uma API usando Spring Boot.
+
+Utilizar um banco de dados em memória (HSQLDB ou H2).
+
+Sem necessidade de desenvolver front-end, apenas o back-end.
 
 # Teste:
 Desenvolver um serviço que seja capaz de gerar uma venda.
