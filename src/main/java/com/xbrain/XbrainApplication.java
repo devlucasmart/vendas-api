@@ -12,7 +12,7 @@ public class XbrainApplication {
 		SpringApplication.run(XbrainApplication.class, args);
 		System.out.println("Servidor iniciado");
 
-		Produto produto = new Produto(1, "tenis", 20.0);
+		Produto produto = new Produto(1, "tenis", 20.0, 1);
 		System.out.println(produto);
 		produto.setId(2);
 		System.out.println(produto.getId());

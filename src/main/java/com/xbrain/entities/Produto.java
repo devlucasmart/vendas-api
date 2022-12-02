@@ -1,17 +1,22 @@
 package com.xbrain.entities;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Produto {
 
     private Integer id;
     private String nome;
     private Double valor;
+    private Integer qtd;
 
     public Produto(){}
 
-    public Produto(Integer id, String nome, Double valor){
+    public Produto(Integer id, String nome, Double valor, Integer qtd){
         this.id = id;
         this.nome = nome;
         this.valor = valor;
+        this.qtd = qtd;
     }
 
     public Integer getId(){
@@ -36,6 +41,14 @@ public class Produto {
 
     public void setValor(Double valor){
         this.valor = valor;
+    }
+
+    public Integer getQtd(){
+        return this.qtd;
+    }
+
+    public void setQtd(Integer qtd){
+        this.qtd = qtd;
     }
 
     @Override
