@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.xbrain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VendasApplicationTests {
+class XbrainApplicationTests {
 
 	@Test
 	void contextLoads() {
