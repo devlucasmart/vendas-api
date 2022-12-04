@@ -1,4 +1,4 @@
-package com.xbrain.repositories;
+/* package com.xbrain.repositories;
 
 import com.xbrain.entities.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
     
 }
+ */
