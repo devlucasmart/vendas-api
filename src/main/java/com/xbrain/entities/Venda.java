@@ -3,14 +3,24 @@ package com.xbrain.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class Venda {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.io.Serializable;
+
+@Entity
+@Table(name = "venda")
+public class Venda implements Serializable{
     
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private LocalDateTime data;
     private Double valor;
     private Vendedor vendedorId;
-    private List<Produto> produtos;
-
     public Venda(){}
 
     public Venda(Integer id, LocalDateTime data, Double valor, Vendedor vendedorId){
