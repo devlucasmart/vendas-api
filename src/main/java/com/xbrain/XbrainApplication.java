@@ -8,8 +8,6 @@ public class XbrainApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(XbrainApplication.class, args);
-		System.out.println("Servidor iniciado");
-
 	}
 
 }
