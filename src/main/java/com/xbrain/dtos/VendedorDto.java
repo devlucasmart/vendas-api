@@ -1,4 +1,6 @@
-package com.xbrain.dto;
+package com.xbrain.dtos;
+
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +21,6 @@ public class VendedorDto {
 
     private Integer id;
     private String nome;
-    // private List<Venda> vendas;
+    private List<VendaDto> vendas;
 
 }

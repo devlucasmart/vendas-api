@@ -1,7 +1,9 @@
-package com.xbrain.dto;
+package com.xbrain.dtos;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.xbrain.entities.Vendedor;
 
 import lombok.AllArgsConstructor;
@@ -24,7 +26,8 @@ public class VendaDto {
     private Integer id;
     private LocalDateTime data;
     private Double valor;
+
+    @JsonInclude(Include.NON_NULL)
     private Vendedor vendedor;
-    // private List<Produto> produtos;
 
 }

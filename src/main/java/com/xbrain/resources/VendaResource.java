@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.xbrain.dto.VendaDto;
-import com.xbrain.entities.Venda;
+import com.xbrain.dtos.VendaDto;
 import com.xbrain.services.VendaService;
 
 @RestController

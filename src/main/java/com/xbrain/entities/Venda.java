@@ -1,17 +1,21 @@
 package com.xbrain.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,8 +24,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.io.Serializable;
 
 @Getter
 @Setter
@@ -40,13 +42,16 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDateTime data = LocalDateTime.now();
+    @Column(nullable = false)
+    private LocalDateTime data;
 
+    @Column(nullable = false)
     private Double valor;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_VENDEDOR")
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "vendedor_id", referencedColumnName = "id")
+    @JsonBackReference
     private Vendedor vendedor;
 
 }

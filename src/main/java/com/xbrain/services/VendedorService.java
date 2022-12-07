@@ -8,8 +8,11 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xbrain.dto.VendedorDto;
+import com.xbrain.dtos.VendaDto;
+import com.xbrain.dtos.VendedorDto;
+import com.xbrain.entities.Venda;
 import com.xbrain.entities.Vendedor;
+import com.xbrain.mappers.VendaMapper;
 import com.xbrain.mappers.VendedorMapper;
 import com.xbrain.repositories.VendedorRepository;
 
@@ -20,12 +23,20 @@ public class VendedorService {
     private VendedorRepository vendedorRepository;
 
     private VendedorMapper vendedorMapper = Mappers.getMapper(VendedorMapper.class);
+    private VendaMapper vendaMapper = Mappers.getMapper(VendaMapper.class);
 
     public List<VendedorDto> buscarTodos() {
         List<Vendedor> vendedors = vendedorRepository.findAll();
         List<VendedorDto> vendedorDtos = new ArrayList<VendedorDto>();
         for (Vendedor vendedor : vendedors) {
-            vendedorDtos.add(vendedorMapper.toDto(vendedor));
+            List<Venda> vendas = vendedor.getVendas();
+            List<VendaDto> vendasDto = new ArrayList<VendaDto>();
+            for (Venda venda : vendas) {
+                vendasDto.add(vendaMapper.toDtoIgnoreVendedor(venda));
+            }
+            VendedorDto vendedorDto = vendedorMapper.toDtoIgnoreVendas(vendedor);
+            vendedorDto.setVendas(vendasDto);
+            vendedorDtos.add(vendedorDto);
         }
         return vendedorDtos;
     }

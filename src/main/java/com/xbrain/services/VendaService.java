@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xbrain.dto.VendaDto;
+import com.xbrain.dtos.VendaDto;
 import com.xbrain.entities.Venda;
 import com.xbrain.mappers.VendaMapper;
 import com.xbrain.repositories.VendaRepository;
