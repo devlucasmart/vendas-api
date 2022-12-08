@@ -1,9 +1,11 @@
 package com.xbrain.resources;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,14 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.xbrain.dtos.VendedorDto;
+import com.xbrain.dtos.VendedorVendasDto;
 import com.xbrain.services.VendedorService;
 
 @RestController
-@RequestMapping(value = "/vendedor")
+@RequestMapping(value = "/vendedores")
 public class VendedorResource {
 
     @Autowired
@@ -34,6 +38,13 @@ public class VendedorResource {
     @GetMapping("/{id}")
     public ResponseEntity<VendedorDto> buscarPorId(@PathVariable Integer id) {
         return ResponseEntity.ok().body(vendedorService.buscarPorId(id));
+    }
+
+    @GetMapping("/periodo")
+    public ResponseEntity<List<VendedorVendasDto>> buscarPorPeriodo(
+            @RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+            @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
+        return ResponseEntity.ok().body(vendedorService.buscarPorPeriodo(inicio, fim));
     }
 
     @PostMapping

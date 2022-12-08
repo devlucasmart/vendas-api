@@ -1,5 +1,8 @@
 package com.xbrain.services;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,9 +33,17 @@ public class VendaService {
         return vendaDtos;
     }
 
+    public List<Venda> buscarTodosPorIdVendedorEPeriodo(Integer idVendedor, LocalDateTime inicio, LocalDateTime fim) {
+        return vendaRepository.findByVendedorIdAndDataBetween(idVendedor, inicio, fim);
+    }
+
     public VendaDto buscarPorId(Integer id) {
         Optional<Venda> venda = vendaRepository.findById(id);
         return VendaMapper.toDto(venda.get());
+    }
+
+    public Long contarDias(LocalDate inicio, LocalDate fim) {
+        return ChronoUnit.DAYS.between(inicio, fim);
     }
 
     public VendaDto inserir(VendaDto vendaDto) {

@@ -8,6 +8,7 @@ import com.xbrain.entities.Vendedor;
 
 @Mapper
 public interface VendedorMapper {
+
     VendedorDto toDto(Vendedor vendedor);
 
     Vendedor toDomain(VendedorDto vendedorDto);

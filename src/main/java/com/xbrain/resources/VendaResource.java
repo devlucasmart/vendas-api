@@ -21,7 +21,7 @@ import com.xbrain.dtos.VendaDto;
 import com.xbrain.services.VendaService;
 
 @RestController
-@RequestMapping(value = "/venda")
+@RequestMapping(value = "/vendas")
 public class VendaResource {
 
     @Autowired
