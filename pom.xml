@@ -8,13 +8,13 @@
 		<version>2.7.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.xbrain</groupId>
-	<artifactId>xbrain</artifactId>
+	<groupId>com.produto</groupId>
+	<artifactId>produto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>xbrain</name>
-	<description>Xbrain project for challenge</description>
+	<name>produto</name>
+	<description>produto</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>13</java.version>
 		<mapstruct.version>1.5.3.Final</mapstruct.version>
 		<mavenPlugin.version>3.5.1</mavenPlugin.version>
 		<lombok.version>1.18.24</lombok.version>

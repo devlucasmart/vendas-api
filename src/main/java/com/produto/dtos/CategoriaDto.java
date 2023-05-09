@@ -1,4 +1,4 @@
-package com.xbrain.dtos;
+package com.produto.dtos;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ import lombok.ToString;
 @ToString
 @Builder
 @EqualsAndHashCode
-public class VendedorDto {
+public class CategoriaDto {
 
     private Integer id;
     private String nome;
-    private List<VendaDto> vendas;
+    private List<ProdutoDto> produtos;
 
 }

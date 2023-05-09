@@ -1,4 +1,4 @@
-package com.xbrain.dtos;
+package com.produto.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,12 +15,10 @@ import lombok.ToString;
 @ToString
 @Builder
 @EqualsAndHashCode
-public class VendedorVendasDto {
+public class CategoriaProdutosDto {
 
     private Integer id;
     private String nome;
-    private Integer totalVendas;
-    private Double valorTotalVendas;
-    private Double mediaDiaria;
-
+    private Integer totalProdutos;
+    private Double valorTotalProdutos;
 }

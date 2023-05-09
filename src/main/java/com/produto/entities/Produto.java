@@ -1,4 +1,4 @@
-package com.xbrain.entities;
+package com.produto.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -33,8 +33,8 @@ import lombok.ToString;
 @Builder
 @EqualsAndHashCode
 @Entity
-@Table(name = "venda")
-public class Venda implements Serializable {
+@Table(name = "produto")
+public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,15 +43,18 @@ public class Venda implements Serializable {
     private Integer id;
 
     @Column(nullable = false)
-    private LocalDateTime data;
+    private String descricao;
 
     @Column(nullable = false)
-    private Double valor;
+    private LocalDateTime dataCadastro;
+
+    @Column
+    private Double preco;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "vendedor_id", referencedColumnName = "id")
+    @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     @JsonBackReference
-    private Vendedor vendedor;
+    private Categoria categoria;
 
 }

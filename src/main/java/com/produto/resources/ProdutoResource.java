@@ -1,5 +1,5 @@
 
-package com.xbrain.resources;
+package com.produto.resources;
 
 import java.net.URI;
 import java.util.List;
@@ -17,47 +17,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.xbrain.dtos.VendaDto;
-import com.xbrain.services.VendaService;
+import com.produto.dtos.ProdutoDto;
+import com.produto.services.ProdutoService;
 
 @RestController
-@RequestMapping(value = "/vendas")
-public class VendaResource {
+@RequestMapping(value = "/produtos")
+public class ProdutoResource {
 
     @Autowired
-    private VendaService vendaService;
+    private ProdutoService produtoService;
 
     @GetMapping
-    public ResponseEntity<List<VendaDto>> buscarTodos() {
-        return ResponseEntity.ok().body(vendaService.buscarTodos());
+    public ResponseEntity<List<ProdutoDto>> buscarTodos() {
+        return ResponseEntity.ok().body(produtoService.buscarTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VendaDto> buscarPorId(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(vendaService.buscarPorId(id));
+    public ResponseEntity<ProdutoDto> buscarPorId(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(produtoService.buscarPorId(id));
     }
 
     @PostMapping
-    public ResponseEntity<?> inserir(@RequestBody VendaDto vendaDto) {
-        vendaDto = vendaService.inserir(vendaDto);
+    public ResponseEntity<?> inserir(@RequestBody ProdutoDto produtoDto) {
+        produtoDto = produtoService.inserir(produtoDto);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(vendaDto.getId()).toUri();
+                .buildAndExpand(produtoDto.getId()).toUri();
         HttpHeaders header = new HttpHeaders();
-        header.add("id", vendaDto.getId().toString());
+        header.add("id", produtoDto.getId().toString());
 
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> atualizar(@PathVariable Integer id, @RequestBody VendaDto vendaDto) {
-        vendaService.atualizar(id, vendaDto);
+    public ResponseEntity<?> atualizar(@PathVariable Integer id, @RequestBody ProdutoDto produtoDto) {
+        produtoService.atualizar(id, produtoDto);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Integer id) {
-        vendaService.deletar(id);
+        produtoService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 

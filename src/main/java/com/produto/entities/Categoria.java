@@ -1,4 +1,4 @@
-package com.xbrain.entities;
+package com.produto.entities;
 
 import java.io.Serializable;
 import java.util.List;
@@ -29,8 +29,8 @@ import lombok.ToString;
 @Builder
 @EqualsAndHashCode
 @Entity
-@Table(name = "vendedor")
-public class Vendedor implements Serializable {
+@Table(name = "categoria")
+public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +41,7 @@ public class Vendedor implements Serializable {
 	private String nome;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "vendedor", fetch = FetchType.EAGER)
-	private List<Venda> vendas;
+	@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
+	private List<Produto> produtos;
 
 }

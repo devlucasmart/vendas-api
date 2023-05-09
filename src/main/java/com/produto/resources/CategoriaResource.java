@@ -1,4 +1,4 @@
-package com.xbrain.resources;
+package com.produto.resources;
 
 import java.net.URI;
 import java.time.LocalDate;
@@ -19,55 +19,48 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.xbrain.dtos.VendedorDto;
-import com.xbrain.dtos.VendedorVendasDto;
-import com.xbrain.services.VendedorService;
+import com.produto.dtos.CategoriaDto;
+import com.produto.dtos.CategoriaProdutosDto;
+import com.produto.services.CategoriaService;
 
 @RestController
-@RequestMapping(value = "/vendedores")
-public class VendedorResource {
+@RequestMapping(value = "/categorias")
+public class CategoriaResource {
 
     @Autowired
-    private VendedorService vendedorService;
+    private CategoriaService categoriaService;
 
     @GetMapping
-    public ResponseEntity<List<VendedorDto>> buscarTodos() {
-        return ResponseEntity.ok().body(vendedorService.buscarTodos());
+    public ResponseEntity<List<CategoriaDto>> buscarTodos() {
+        return ResponseEntity.ok().body(categoriaService.buscarTodos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VendedorDto> buscarPorId(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(vendedorService.buscarPorId(id));
-    }
-
-    @GetMapping("/periodo")
-    public ResponseEntity<List<VendedorVendasDto>> buscarPorPeriodo(
-            @RequestParam("inicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
-            @RequestParam("fim") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
-        return ResponseEntity.ok().body(vendedorService.buscarPorPeriodo(inicio, fim));
+    public ResponseEntity<CategoriaDto> buscarPorId(@PathVariable Integer id) {
+        return ResponseEntity.ok().body(categoriaService.buscarPorId(id));
     }
 
     @PostMapping
-    public ResponseEntity<?> inserir(@RequestBody VendedorDto vendedorDto) {
-        vendedorDto = vendedorService.inserir(vendedorDto);
+    public ResponseEntity<?> inserir(@RequestBody CategoriaDto categoriaDto) {
+        categoriaDto = categoriaService.inserir(categoriaDto);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(vendedorDto.getId()).toUri();
+                .buildAndExpand(categoriaDto.getId()).toUri();
         HttpHeaders header = new HttpHeaders();
-        header.add("id", vendedorDto.getId().toString());
+        header.add("id", categoriaDto.getId().toString());
 
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> atualizar(@PathVariable Integer id, @RequestBody VendedorDto vendedorDto) {
-        vendedorService.atualizar(id, vendedorDto);
+    public ResponseEntity<?> atualizar(@PathVariable Integer id, @RequestBody CategoriaDto categoriaDto) {
+        categoriaService.atualizar(id, categoriaDto);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Integer id) {
-        vendedorService.deletar(id);
+        categoriaService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 }
