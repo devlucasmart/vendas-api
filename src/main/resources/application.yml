@@ -1,6 +1,6 @@
 spring:
     datasource:
-        url: jdbc:h2:file:~/produtos
+        url: jdbc:h2:file:~/XBRAIN
         driverClassName: org.h2.Driver
         username: sa
         password: sa

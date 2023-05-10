@@ -1,10 +1,10 @@
-package com.produto;
+package com.xbrain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class produtoApplicationTests {
+class XbrainApplicationTests {
 
 	@Test
 	void contextLoads() {

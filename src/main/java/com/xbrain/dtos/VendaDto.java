@@ -1,10 +1,10 @@
-package com.produto.dtos;
+package com.xbrain.dtos;
 
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.produto.entities.Categoria;
+import com.xbrain.entities.Vendedor;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,14 +21,13 @@ import lombok.ToString;
 @ToString
 @Builder
 @EqualsAndHashCode
-public class ProdutoDto {
+public class VendaDto {
 
     private Integer id;
-    private String descricao;
-    private LocalDateTime dataCadastro;
-    private Double preco;
+    private LocalDateTime data;
+    private Double valor;
 
     @JsonInclude(Include.NON_NULL)
-    private Categoria categoria;
+    private Vendedor vendedor;
 
 }

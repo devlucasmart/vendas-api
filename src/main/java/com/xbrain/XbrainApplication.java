@@ -1,13 +1,13 @@
-package com.produto;
+package com.xbrain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProdutoApplication {
+public class XbrainApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProdutoApplication.class, args);
+		SpringApplication.run(XbrainApplication.class, args);
 	}
 
 }
