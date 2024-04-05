@@ -1,4 +1,4 @@
-package com.xbrain.resources;
+package com.vendas.resources;
 
 import java.net.URI;
 import java.time.LocalDate;
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.xbrain.dtos.VendedorDto;
-import com.xbrain.dtos.VendedorVendasDto;
-import com.xbrain.services.VendedorService;
+import com.vendas.dtos.VendedorDto;
+import com.vendas.dtos.VendedorVendasDto;
+import com.vendas.services.VendedorService;
 
 @RestController
 @RequestMapping(value = "/vendedores")

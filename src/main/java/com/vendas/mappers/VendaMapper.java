@@ -1,10 +1,10 @@
-package com.xbrain.mappers;
+package com.vendas.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.xbrain.dtos.VendaDto;
-import com.xbrain.entities.Venda;
+import com.vendas.dtos.VendaDto;
+import com.vendas.entities.Venda;
 
 @Mapper
 public interface VendaMapper {

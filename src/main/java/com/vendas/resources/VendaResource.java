@@ -1,5 +1,5 @@
 
-package com.xbrain.resources;
+package com.vendas.resources;
 
 import java.net.URI;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.xbrain.dtos.VendaDto;
-import com.xbrain.services.VendaService;
+import com.vendas.dtos.VendaDto;
+import com.vendas.services.VendaService;
 
 @RestController
 @RequestMapping(value = "/vendas")

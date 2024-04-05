@@ -1,4 +1,4 @@
-package com.xbrain.dtos;
+package com.vendas.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

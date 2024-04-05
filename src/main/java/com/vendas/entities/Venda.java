@@ -1,4 +1,4 @@
-package com.xbrain.entities;
+package com.vendas.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,25 +19,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Builder
-@EqualsAndHashCode
 @Entity
-@Table(name = "venda")
+@Table(name = "tb_venda")
 public class Venda implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -53,5 +49,4 @@ public class Venda implements Serializable {
     @JoinColumn(name = "vendedor_id", referencedColumnName = "id")
     @JsonBackReference
     private Vendedor vendedor;
-
 }

@@ -1,4 +1,4 @@
-package com.xbrain.services;
+package com.vendas.services;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,14 +11,14 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xbrain.dtos.VendaDto;
-import com.xbrain.dtos.VendedorDto;
-import com.xbrain.dtos.VendedorVendasDto;
-import com.xbrain.entities.Venda;
-import com.xbrain.entities.Vendedor;
-import com.xbrain.mappers.VendaMapper;
-import com.xbrain.mappers.VendedorMapper;
-import com.xbrain.repositories.VendedorRepository;
+import com.vendas.dtos.VendaDto;
+import com.vendas.dtos.VendedorDto;
+import com.vendas.dtos.VendedorVendasDto;
+import com.vendas.entities.Venda;
+import com.vendas.entities.Vendedor;
+import com.vendas.mappers.VendaMapper;
+import com.vendas.mappers.VendedorMapper;
+import com.vendas.repositories.VendedorRepository;
 
 @Service
 public class VendedorService {

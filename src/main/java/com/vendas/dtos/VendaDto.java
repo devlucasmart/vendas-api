@@ -1,10 +1,10 @@
-package com.xbrain.dtos;
+package com.vendas.dtos;
 
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.xbrain.entities.Vendedor;
+import com.vendas.entities.Vendedor;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
