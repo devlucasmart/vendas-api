@@ -41,7 +41,7 @@ public class VendaResource {
     public ResponseEntity<?> inserir(@RequestBody VendaDto vendaDto) {
         vendaDto = vendaService.inserir(vendaDto);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+        var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(vendaDto.getId()).toUri();
         HttpHeaders header = new HttpHeaders();
         header.add("id", vendaDto.getId().toString());

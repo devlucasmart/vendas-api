@@ -25,8 +25,8 @@ public class VendaService {
     private VendaMapper VendaMapper = Mappers.getMapper(VendaMapper.class);
 
     public List<VendaDto> buscarTodos() {
-        List<Venda> vendas = vendaRepository.findAll();
-        List<VendaDto> vendaDtos = new ArrayList<VendaDto>();
+        var vendas = vendaRepository.findAll();
+        var vendaDtos = new ArrayList<VendaDto>();
         for (Venda venda : vendas) {
             vendaDtos.add(VendaMapper.toDto(venda));
         }
@@ -38,7 +38,7 @@ public class VendaService {
     }
 
     public VendaDto buscarPorId(Integer id) {
-        Optional<Venda> venda = vendaRepository.findById(id);
+        var venda = vendaRepository.findById(id);
         return VendaMapper.toDto(venda.get());
     }
 
@@ -47,14 +47,14 @@ public class VendaService {
     }
 
     public VendaDto inserir(VendaDto vendaDto) {
-        Venda venda = VendaMapper.toDomain(vendaDto);
+        var venda = VendaMapper.toDomain(vendaDto);
         venda = vendaRepository.save(venda);
         return VendaMapper.toDto(venda);
     }
 
     public VendaDto atualizar(Integer id, VendaDto vendaDto) {
         vendaDto.setId(id);
-        Venda venda = VendaMapper.toDomain(vendaDto);
+        var venda = VendaMapper.toDomain(vendaDto);
         venda = vendaRepository.save(venda);
         return VendaMapper.toDto(venda);
     }

@@ -31,5 +31,4 @@ public class Vendedor implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "vendedor", fetch = FetchType.EAGER)
     private List<Venda> vendas;
-
 }
