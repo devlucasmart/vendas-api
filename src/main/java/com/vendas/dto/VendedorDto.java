@@ -1,4 +1,6 @@
-package com.vendas.dtos;
+package com.vendas.dto;
+
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,12 +17,10 @@ import lombok.ToString;
 @ToString
 @Builder
 @EqualsAndHashCode
-public class VendedorVendasDto {
+public class VendedorDto {
 
     private Integer id;
     private String nome;
-    private Integer totalVendas;
-    private Double valorTotalVendas;
-    private Double mediaDiaria;
+    private List<VendaDto> vendas;
 
 }

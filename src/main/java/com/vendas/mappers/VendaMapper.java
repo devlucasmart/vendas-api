@@ -3,7 +3,7 @@ package com.vendas.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.vendas.dtos.VendaDto;
+import com.vendas.dto.VendaDto;
 import com.vendas.entities.Venda;
 
 @Mapper
@@ -16,4 +16,6 @@ public interface VendaMapper {
     @Mapping(target = "vendedor", ignore = true)
     VendaDto toDtoIgnoreVendedor(Venda venda);
 
+    @Mapping(target = "cliente", ignore = true)
+    VendaDto toDtoIgnoreCliente(Venda venda);
 }

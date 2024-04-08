@@ -1,7 +1,6 @@
 
 package com.vendas.resources;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.vendas.dtos.VendaDto;
+import com.vendas.dto.VendaDto;
 import com.vendas.services.VendaService;
 
 @RestController
-@RequestMapping(value = "/vendas")
+@RequestMapping(value = "api/vendas")
 public class VendaResource {
 
     @Autowired

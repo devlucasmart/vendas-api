@@ -1,10 +1,9 @@
 package com.vendas.mappers;
 
-import com.vendas.dtos.cliente.ClienteRequest;
-import com.vendas.dtos.cliente.ClienteResponse;
+import com.vendas.dto.cliente.ClienteRequest;
+import com.vendas.dto.cliente.ClienteResponse;
 import com.vendas.entities.Cliente;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 

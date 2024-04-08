@@ -11,9 +11,9 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vendas.dtos.VendaDto;
-import com.vendas.dtos.VendedorDto;
-import com.vendas.dtos.VendedorVendasDto;
+import com.vendas.dto.VendaDto;
+import com.vendas.dto.VendedorDto;
+import com.vendas.dto.VendedorVendasDto;
 import com.vendas.entities.Venda;
 import com.vendas.entities.Vendedor;
 import com.vendas.mappers.VendaMapper;

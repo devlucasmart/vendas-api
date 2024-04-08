@@ -1,4 +1,4 @@
-package com.vendas.dtos.venda;
+package com.vendas.dto.venda;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.vendas.entities.Vendedor;

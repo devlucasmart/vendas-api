@@ -1,7 +1,7 @@
 package com.vendas.resources;
 
-import com.vendas.dtos.produto.ProdutoRequest;
-import com.vendas.dtos.produto.ProdutoResponse;
+import com.vendas.dto.produto.ProdutoRequest;
+import com.vendas.dto.produto.ProdutoResponse;
 import com.vendas.services.ProdutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;

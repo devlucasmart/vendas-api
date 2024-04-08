@@ -1,4 +1,4 @@
-package com.vendas.dtos.cliente;
+package com.vendas.dto.cliente;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

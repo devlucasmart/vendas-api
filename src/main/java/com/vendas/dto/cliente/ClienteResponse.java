@@ -1,4 +1,4 @@
-package com.vendas.dtos.produto;
+package com.vendas.dto.cliente;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,10 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class ProdutoRequest {
+public class ClienteResponse {
+    private Integer id;
     private String nome;
-    private Double preco;
+    private String cpf;
+    private String rg;
 }

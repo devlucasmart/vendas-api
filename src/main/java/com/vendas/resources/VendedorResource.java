@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.vendas.dtos.VendedorDto;
-import com.vendas.dtos.VendedorVendasDto;
+import com.vendas.dto.VendedorDto;
+import com.vendas.dto.VendedorVendasDto;
 import com.vendas.services.VendedorService;
 
 @RestController
-@RequestMapping(value = "/vendedores")
+@RequestMapping(value = "api/vendedores")
 public class VendedorResource {
 
     @Autowired

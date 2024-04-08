@@ -1,7 +1,7 @@
 package com.vendas.services;
 
-import com.vendas.dtos.cliente.ClienteRequest;
-import com.vendas.dtos.cliente.ClienteResponse;
+import com.vendas.dto.cliente.ClienteRequest;
+import com.vendas.dto.cliente.ClienteResponse;
 import com.vendas.entities.Cliente;
 import com.vendas.mappers.ClienteMapper;
 import com.vendas.predicate.ClientePredicate;

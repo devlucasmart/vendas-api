@@ -1,11 +1,13 @@
 package com.vendas.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +29,7 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String rg;
-    @OneToMany
-    private List<Venda> venda;
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+    private List<Venda> vendas;
 }

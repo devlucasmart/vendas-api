@@ -3,7 +3,7 @@ package com.vendas.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.vendas.dtos.VendedorDto;
+import com.vendas.dto.VendedorDto;
 import com.vendas.entities.Vendedor;
 
 @Mapper

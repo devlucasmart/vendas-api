@@ -1,7 +1,7 @@
 package com.vendas.resources;
 
-import com.vendas.dtos.cliente.ClienteRequest;
-import com.vendas.dtos.cliente.ClienteResponse;
+import com.vendas.dto.cliente.ClienteRequest;
+import com.vendas.dto.cliente.ClienteResponse;
 import com.vendas.services.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;

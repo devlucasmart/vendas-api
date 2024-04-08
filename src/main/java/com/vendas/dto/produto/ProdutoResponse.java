@@ -1,4 +1,4 @@
-package com.vendas.dtos.produto;
+package com.vendas.dto.produto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

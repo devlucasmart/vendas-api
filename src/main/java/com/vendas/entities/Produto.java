@@ -29,7 +29,4 @@ public class Produto implements Serializable {
     private Integer id;
     private String nome;
     private Double preco;
-    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "venda_id", referencedColumnName = "id")
-    private Venda venda;
 }

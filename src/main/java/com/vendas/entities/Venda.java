@@ -12,6 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -49,7 +52,10 @@ public class Venda implements Serializable {
     @JoinColumn(name = "vendedor_id", referencedColumnName = "id")
     @JsonBackReference
     private Vendedor vendedor;
-    @OneToMany(mappedBy = "venda", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinTable(name = "tb_venda_produto",
+            joinColumns = @JoinColumn(name = "venda_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id", referencedColumnName = "id"))
     private List<Produto> produtos;
     @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.DETACH)
     @JoinColumn(name = "cliente_id", referencedColumnName = "id")
