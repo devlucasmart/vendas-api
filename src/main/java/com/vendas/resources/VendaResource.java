@@ -3,6 +3,7 @@ package com.vendas.resources;
 
 import java.util.List;
 
+import com.vendas.dto.venda.VendaRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -37,13 +38,13 @@ public class VendaResource {
     }
 
     @PostMapping
-    public ResponseEntity<?> inserir(@RequestBody VendaDto vendaDto) {
-        vendaDto = vendaService.inserir(vendaDto);
+    public ResponseEntity<?> inserir(@RequestBody VendaRequest request) {
+        var venda = vendaService.inserir(request);
 
         var uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(vendaDto.getId()).toUri();
+                .buildAndExpand(venda.getId()).toUri();
         HttpHeaders header = new HttpHeaders();
-        header.add("id", vendaDto.getId().toString());
+        header.add("id", venda.getId().toString());
 
         return ResponseEntity.created(uri).build();
     }

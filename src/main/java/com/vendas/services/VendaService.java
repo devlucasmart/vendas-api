@@ -5,7 +5,14 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.vendas.comum.exception.ValidacaoException;
+import com.vendas.dto.venda.VendaRequest;
+import com.vendas.dto.venda.VendaResponse;
+import com.vendas.entities.Cliente;
+import com.vendas.entities.Produto;
+import com.vendas.entities.Vendedor;
 import com.vendas.repositories.ClienteRepository;
 import com.vendas.repositories.ProdutoRepository;
 import com.vendas.repositories.VendedorRepository;
@@ -25,7 +32,7 @@ import javax.validation.ValidationException;
 public class VendaService {
 
     private final VendaRepository vendaRepository;
-    private ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
     private final VendedorRepository vendedorRepository;
     private final ProdutoRepository produtoRepository;
     private VendaMapper VendaMapper = Mappers.getMapper(VendaMapper.class);
@@ -44,18 +51,18 @@ public class VendaService {
     }
 
     public VendaDto buscarPorId(Integer id) {
-        var venda = vendaRepository.findById(id);
-        return VendaMapper.toDto(venda.get());
+        var venda = vendaRepository.findById(id).orElseThrow(() -> new ValidacaoException("Venda Não Encontrada!!"));
+        return VendaMapper.toDto(venda);
     }
 
     public Long contarDias(LocalDate inicio, LocalDate fim) {
         return ChronoUnit.DAYS.between(inicio, fim);
     }
 
-    public VendaDto inserir(VendaDto vendaDto) {
-        var venda = VendaMapper.toDomain(vendaDto);
-        venda = vendaRepository.save(venda);
-        return VendaMapper.toDto(venda);
+    public VendaResponse inserir(VendaRequest request) {
+        var venda = VendaMapper.toDomain(request);
+        venda = vendaRepository.save(validarCampos(venda, request));
+        return VendaMapper.toResponse(venda);
     }
 
     public VendaDto atualizar(Integer id, VendaDto vendaDto) {
@@ -69,20 +76,54 @@ public class VendaService {
         vendaRepository.deleteById(id);
     }
 
-    private void validarCampos(VendaDto venda){
-        validarCliente(venda.getCliente().getId());
-        validarVendedor(venda.getVendedor().getId());
+    private Venda validarCampos(Venda venda, VendaRequest request) {
+        venda.setCliente(validarCliente(request));
+        venda.setVendedor(validarVendedor(request));
+        venda.setProdutos(validarProduto(request));
+
+        return venda;
     }
 
-    private void validarCliente(Integer clienteId){
-        clienteRepository.findById(clienteId).orElseThrow(() -> new ValidationException("Cliente não Encontrado!!"));
+    private Cliente validarCliente(VendaRequest request) {
+        var clienteId = request.getCliente().getId();
+        return clienteRepository.findById(clienteId).orElseThrow(() -> new ValidacaoException("Cliente não Encontrado!!"));
     }
 
-    private void validarVendedor(Integer vendedorId){
-        vendedorRepository.findById(vendedorId).orElseThrow(() -> new ValidationException("Vendedor não Encontrado!!"));
+    private Vendedor validarVendedor(VendaRequest request) {
+        return vendedorRepository.findById(request.getVendedor().getId()).orElseThrow(() -> new ValidacaoException("Vendedor não Encontrado!!"));
     }
 
-    private void validarProduto(Integer produtoId){
-        produtoRepository.findById(produtoId).orElseThrow(() -> new ValidationException("Produto não Encontrado"));
+    private List<Produto> validarProduto(VendaRequest request) {
+        var existingProductIds = fetchExistingProductIds(request);
+
+        return request.getProdutos().stream()
+                .filter(produto -> existingProductIds.contains(produto.getId()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Integer> fetchExistingProductIds(VendaRequest request) {
+        List<Produto> produtos = request.getProdutos();
+        List<Integer> produtosNaoEncontrados = filterNonExistingProducts(produtos);
+        handleNonExistingProducts(produtosNaoEncontrados);
+        return mapProductIds(produtos);
+    }
+
+    private List<Integer> filterNonExistingProducts(List<Produto> produtos) {
+        return produtos.stream()
+                .map(Produto::getId)
+                .filter(productId -> !produtoRepository.findById(productId).isPresent())
+                .collect(Collectors.toList());
+    }
+
+    private void handleNonExistingProducts(List<Integer> produtosNaoEncontrados) {
+        if (!produtosNaoEncontrados.isEmpty()) {
+            throw new ValidacaoException("Os seguintes produtos não foram encontrados: " + produtosNaoEncontrados);
+        }
+    }
+
+    private List<Integer> mapProductIds(List<Produto> produtos) {
+        return produtos.stream()
+                .map(Produto::getId)
+                .collect(Collectors.toList());
     }
 }

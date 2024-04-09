@@ -22,5 +22,4 @@ public class VendedorVendasDto {
     private Integer totalVendas;
     private Double valorTotalVendas;
     private Double mediaDiaria;
-
 }

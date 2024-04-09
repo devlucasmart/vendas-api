@@ -1,23 +1,32 @@
-# Estágio 1: Construir a aplicação Spring com Maven
-FROM maven:3.8.4-openjdk-17-slim AS build
+# Use a imagem base do Maven para compilar o projeto
+FROM maven:3.8.5-openjdk-17 AS build
 
-# Copia o código-fonte para o diretório de trabalho
-COPY . /usr/src/app
+# Diretório de trabalho dentro do contêiner
+WORKDIR /app
 
-# Define o diretório de trabalho
-WORKDIR /usr/src/app
+# Copiar o arquivo pom.xml para o diretório de trabalho
+COPY pom.xml .
 
-# Empacota a aplicação utilizando o Maven
-RUN mvn clean package -DskipTests
+# Baixar as dependências do Maven (apenas o pom.xml é copiado, portanto as dependências são cacheadas se o pom não mudar)
+RUN mvn dependency:go-offline
 
-# Estágio 2: Executar a aplicação Spring em um contêiner
-FROM adoptopenjdk/openjdk17:alpine-jre
+# Copiar todo o código-fonte para o diretório de trabalho
+COPY src ./src
 
-# Define o diretório de trabalho
-WORKDIR /usr/src/app
+# Compilar o projeto
+RUN mvn package -DskipTests
 
-# Copia o arquivo JAR construído no Estágio 1 para o diretório de trabalho no Estágio 2
-COPY --from=build /usr/src/app/target/*.jar app.jar
+# Use a imagem base do OpenJDK 17 para executar a aplicação
+FROM adoptopenjdk/openjdk17:jdk-17.0.0_35-alpine AS runtime
 
-# Define o comando para iniciar a aplicação Spring automaticamente ao iniciar o contêiner
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copiar qualquer arquivo .jar encontrado dentro do diretório target para o diretório de trabalho
+COPY --from=build /app/target/*.jar /app/
+
+# Expor a porta em que a aplicação Spring Boot estará em execução (ajuste conforme necessário)
+EXPOSE 8080
+
+# Comando a ser executado ao iniciar o contêiner
+CMD ["java", "-jar", "*.jar"]

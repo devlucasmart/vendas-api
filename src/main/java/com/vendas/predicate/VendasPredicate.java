@@ -1,11 +1,13 @@
 package com.vendas.predicate;
 
 import com.vendas.comum.predicate.PredicateBase;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 import static com.vendas.entities.QVenda.venda;
 
+@Data
 public class VendasPredicate extends PredicateBase {
     public VendasPredicate comId(Integer id) {
         if (id != null) {

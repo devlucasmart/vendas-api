@@ -1,5 +1,7 @@
 package com.vendas.mappers;
 
+import com.vendas.dto.venda.VendaRequest;
+import com.vendas.dto.venda.VendaResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -12,6 +14,10 @@ public interface VendaMapper {
     VendaDto toDto(Venda venda);
 
     Venda toDomain(VendaDto vendaDto);
+
+    Venda toDomain(VendaRequest request);
+
+    VendaResponse toResponse(Venda venda);
 
     @Mapping(target = "vendedor", ignore = true)
     VendaDto toDtoIgnoreVendedor(Venda venda);
