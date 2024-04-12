@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Venda</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<h1>Relatório de Venda</h1>
+<table>
+    <tr>
+        <th>ID:</th>
+        <td th:text="${venda.id}"></td>
+    </tr>
+    <tr>
+        <th>Data:</th>
+        <td th:text="${#dates.format(venda.data, 'dd/MM/yyyy HH:mm')}"></td>
+    </tr>
+    <tr>
+        <th>Valor:</th>
+        <td th:text="${venda.valor}"></td>
+    </tr>
+    <tr>
+        <th>Vendedor:</th>
+        <td th:text="${venda.vendedor != null ? venda.vendedor.nome : 'N/A'}"></td>
+    </tr>
+    <tr>
+        <th>Produtos:</th>
+        <td>
+            <ul>
+                <li th:each="produto : ${venda.produtos}" th:text="${produto.nome}"></li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <th>Cliente:</th>
+        <td th:text="${venda.cliente != null ? venda.cliente.nome : 'N/A'}"></td>
+    </tr>
+    <!-- Adicione aqui outras informações da venda conforme necessário -->
+</table>
+</body>
+</html>
